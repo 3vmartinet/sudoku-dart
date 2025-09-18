@@ -885,7 +885,7 @@ void main() {
   test('test generator', () {
     // sudo generator with expert level
     int beginTime = DateTime.now().millisecondsSinceEpoch;
-    Sudoku sudoku = Sudoku.generate(Level.expert);
+    Sudoku sudoku = Sudoku.generate(level: Level.expert);
     int endTime = DateTime.now().millisecondsSinceEpoch;
     sudoku.debug();
     expect(sudoku.solution.any((element) => element == -1), false);

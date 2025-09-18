@@ -14,13 +14,11 @@ enum Level {
   const Level({required this.digHoleCount});
 }
 
-Sudoku generate({Level level = Level.easy, int? digHoleCount}) {
-  if (digHoleCount != null) {
-    assert(digHoleCount >= Level.easy.digHoleCount);
-    assert(digHoleCount <= Level.expert.digHoleCount);
-  }
+Sudoku generate(int digHoleCount) {
+  assert(digHoleCount >= Level.easy.digHoleCount);
+  assert(digHoleCount <= Level.expert.digHoleCount);
 
-  return _generate(digHoleCount ?? level.digHoleCount);
+  return _generate(digHoleCount);
 }
 
 Sudoku _generate(int digHoleCount) {

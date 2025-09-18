@@ -188,6 +188,9 @@ class Sudoku {
 
   int get timeCount => this._timeCount;
 
-  static Sudoku generate(sudokuGenerator.Level level) =>
-      sudokuGenerator.generate(level: level);
+  static Sudoku generate(
+      {sudokuGenerator.Level level = sudokuGenerator.Level.easy,
+      int? digHoleCount}) {
+    return sudokuGenerator.generate(digHoleCount ?? level.digHoleCount);
+  }
 }
