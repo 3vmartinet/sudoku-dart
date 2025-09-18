@@ -3,29 +3,24 @@ import 'dart:math';
 import 'core.dart';
 import 'tools.dart';
 
-enum Level { easy, medium, hard, expert }
+enum Level {
+  easy(digHoleCount: 38),
+  medium(digHoleCount: 45),
+  hard(digHoleCount: 50),
+  expert(digHoleCount: 55);
 
-Sudoku generate({Level level = Level.easy}) {
-  // level to dig hole count
-  int digHoleCount = 40;
-  switch (level) {
-    case Level.easy:
-      digHoleCount = 38;
-      break;
-    case Level.medium:
-      digHoleCount = 45;
-      break;
-    case Level.hard:
-      digHoleCount = 50;
-      break;
-    case Level.expert:
-      digHoleCount = 55;
-      break;
-    default:
-      break;
+  final int digHoleCount;
+
+  const Level({required this.digHoleCount});
+}
+
+Sudoku generate({Level level = Level.easy, int? digHoleCount}) {
+  if (digHoleCount != null) {
+    assert(digHoleCount >= Level.easy.digHoleCount);
+    assert(digHoleCount <= Level.expert.digHoleCount);
   }
 
-  return _generate(digHoleCount);
+  return _generate(digHoleCount ?? level.digHoleCount);
 }
 
 Sudoku _generate(int digHoleCount) {
